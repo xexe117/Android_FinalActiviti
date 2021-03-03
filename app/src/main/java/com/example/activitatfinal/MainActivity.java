@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextMissatge;
     private final Handler handler = new Handler();
     private Runnable getResponceAfterInterval;
-    private QuePassaBBDD db;
+    private AjudaBBDD db;
     private Boolean provaMissatge = true;
 
     @Override
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         pref = new Preferencies(this);
 
-        QuePassaBBDD db = new QuePassaBBDD(this);
+        AjudaBBDD db = new AjudaBBDD(this);
         try{
             JSONObject prova_token = new JSONObject(Auxiliar.verificacioUsuari(pref));
 
