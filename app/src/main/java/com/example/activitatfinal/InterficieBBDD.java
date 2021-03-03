@@ -37,7 +37,7 @@ public class InterficieBBDD {
     }
 
     public static boolean codiUsuariExisteix(String codiUsuari){
-        return igual;
+        return true;
     }
 
     public static ArrayList<Missatge> llistaMissatge(int idUlimoMsg){
@@ -50,6 +50,7 @@ public class InterficieBBDD {
 
     public static String getNomUsuari (String userId){
         String select = "SELECT " + AjudaBBDD.COL_USER_NAME + " FROM " + AjudaBBDD.TAB_USER + " WHERE " + AjudaBBDD.COL_USER_ID + " = " + userId;
+        return select;
     }
 
     public static void buidaMissatges(){

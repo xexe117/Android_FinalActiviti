@@ -19,8 +19,15 @@ import java.util.ArrayList;
 
 public class Auxiliar {
 
-    public static String inreracionPost(String arg1, String arg2, boolean login){
+    public static String interacionPost(String arg1, String arg2, boolean login) throws JSONException {
+        //Crear un json
+        JSONObject user = new JSONObject();
+        user.put("email", arg1);
+        user.put("password", arg2);
+        user.put("recorda", login);
 
+        String us = user;
+        return us;
     }
 
     public static String ineracioGet(Preferencies pref, boolean prova){
@@ -85,7 +92,7 @@ public class Auxiliar {
 
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        missatgeAadapter adapterMissatge = new missatgeAdapter(context, missatges, idUser);
+        Adapter adapterMissatge = new Adapter(context, missatges, idUser);
         recycler.setAdapter(adapterMissatge);
         recycler.smoothScrollToPosition(((ArrayList) missatges).size());
     }

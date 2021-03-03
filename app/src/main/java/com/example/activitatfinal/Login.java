@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.CheckBox;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,8 +16,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        String result = Auxiliar.interacionPost(user.getText().toString().toUpperCase(), pass.getText().toString(), true);
+        CheckBox cB = findViewById(R.id.cB_remember);
+        String result = Auxiliar.interacionPost(findViewById(R.id.edTx_nomUsuari).toString().toUpperCase(), findViewById(R.id.edTxPw_password).toString(), true);
 
         if (!result.trim().isEmpty()){
             try{
@@ -25,8 +27,8 @@ public class Login extends AppCompatActivity {
                 if(json.getBoolean("correcta")){
                     Intent intent = new Intent();
                     intent.putExtra("user", json.getString("dades"));
-                    intent.putExtra("pass", pass.getText().toString().toUpperCase());
-                    intent.putExtra("recorda", recordaCheckBox.isChecked());
+                    intent.putExtra("pass", findViewById(R.id.edTxPw_password).toString().toUpperCase());
+                    intent.putExtra("recorda", cB.isChecked());
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 } else {
@@ -38,6 +40,9 @@ public class Login extends AppCompatActivity {
         } else {
             logInError();
         }
+    }
+
+    private void logInError() {
     }
 
 }

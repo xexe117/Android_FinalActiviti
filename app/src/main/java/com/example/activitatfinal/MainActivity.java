@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject prova_token = new JSONObject(Auxiliar.verificacioUsuari(pref));
 
             if(!prova_token.getBoolean("correcta")){
-                Intent intent = new Intent(this, LoginIn.class);
+                Intent intent = new Intent(this, Login.class);
                 startActivity(intent, LOGIN);;
             }
             pref.setDarrerMissatge(prova_token.getInt("darrermisstge"));
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recylerView);
         editTextMissatge = findViewById(R.id.msg);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject user = new JSONObject(data.getStringExtra("user"));
 
-                    pref.setCodiUsuari(user.getString("codiusuari"));
+                    pref.setCodiusuari(user.getString("codiusuari"));
                     pref.setUser(user.getString("email"));
                     pref.setToken(user.getString("token"));
                     pref.setPassword(data.getStringExtra("pass"));
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (resultCode == Activity.RESULT_CANCELED){
-                intent = new Intent(this, LogIn.class);
+                intent = new Intent(this, Login.class);
             }
         }
     }
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        handler.removeCallBacks(getResponceAfterInterval);
+        handler.removeCallbacks(getResponceAfterInterval);
         handler.post(getResponceAfterInterval);
     }
 

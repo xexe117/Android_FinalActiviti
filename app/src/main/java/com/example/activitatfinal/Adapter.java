@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Adapter {
+public class Adapter extends RecyclerView.Adapter {
     private int TIPUS_IGUAL = 1;
     private int TIPUS_DIFF = 2;
 
@@ -19,14 +19,30 @@ public class Adapter {
     private String idUserActual;
     private int idUserActualEnter;
 
-    public void missatgeAdapter(Context context, ArrayList<Missatge> llista_missatges, String idUserActual){
+    public Adapter(Context context, ArrayList<Missatge> llista_missatges, String idUserActual){
         this.context = context;
         this.llista_missatges = llista_missatges;
         this.idUserActual = idUserActual;
         this.idUserActualEnter = Integer.parseInt(idUserActual);
     }
 
+    @NonNull
     @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+   /* @Override
     public int getItemViewType(int posicio){
 
     }
@@ -84,6 +100,6 @@ public class Adapter {
         } else {
             return TIPUS_DIFF;
         }
-    }
+    }*/
 
 }
